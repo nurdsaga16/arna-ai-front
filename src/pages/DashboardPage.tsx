@@ -125,7 +125,7 @@ const DashboardPage = () => {
   const handleGeneratePlan = async () => {
     setIsPlanLoading(true)
     try {
-      const res = await api.post<PlannerResponse>('/planner')
+      const res = await api.post<PlannerResponse>('/chat/planner')
       setDailyPlan(res.data.content)
       if (res.data.generatedTasks && res.data.generatedTasks.length > 0) {
         setTodayTasks(res.data.generatedTasks)

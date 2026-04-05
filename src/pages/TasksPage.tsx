@@ -153,7 +153,7 @@ const TasksPage = () => {
   const handleDone = async (id: string) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, isDone: true } : t))
     try {
-      const res = await api.patch<TaskResponse>(`/api/tasks/${id}/done`)
+      const res = await api.patch<TaskResponse>(`/tasks/${id}/done`)
       if (res.data?.id) {
         setTasks(prev => prev.map(t => t.id === id ? res.data : t))
       }
@@ -167,7 +167,7 @@ const TasksPage = () => {
   const handleUndone = async (id: string) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, isDone: false } : t))
     try {
-      const res = await api.patch<TaskResponse>(`/api/tasks/${id}/undone`)
+      const res = await api.patch<TaskResponse>(`/tasks/${id}/undone`)
       if (res.data?.id) {
         setTasks(prev => prev.map(t => t.id === id ? res.data : t))
       }
@@ -181,7 +181,7 @@ const TasksPage = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Тапсырманы жою?')) return
     try {
-      await api.delete(`/api/tasks/${id}`)
+      await api.delete(`/tasks/${id}`)
       setTasks(prev => prev.filter(t => t.id !== id))
       toast.success('Тапсырма жойылды')
     } catch {
@@ -199,11 +199,11 @@ const TasksPage = () => {
         goalId:        data.goalId || undefined,
       }
       if (editingTask) {
-        const res = await api.put<TaskResponse>(`/api/tasks/${editingTask.id}`, body)
+        const res = await api.put<TaskResponse>(`/tasks/${editingTask.id}`, body)
         setTasks(prev => prev.map(t => t.id === editingTask.id ? res.data : t))
         toast.success('Тапсырма жаңартылды')
       } else {
-        const res = await api.post<TaskResponse>('/api/tasks', body)
+        const res = await api.post<TaskResponse>('/tasks', body)
         setTasks(prev => [res.data, ...prev])
         toast.success('Тапсырма қосылды')
       }
@@ -218,7 +218,7 @@ const TasksPage = () => {
   const handleGenerateAIPlan = async () => {
     setIsAiLoading(true)
     try {
-      const res = await api.post<PlannerResponse>('/api/chat/planner')
+      const res = await api.post<PlannerResponse>('/chat/planner')
       if (res.data.generatedTasks && res.data.generatedTasks.length > 0) {
         setTasks(prev => [...res.data.generatedTasks, ...prev])
         toast.success(`AI ${res.data.generatedTasks.length} тапсырма қосты`)

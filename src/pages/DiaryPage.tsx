@@ -345,7 +345,7 @@ const DiaryPage = () => {
 
       try {
         if (currentIsNew) {
-          const res = await api.post<DiaryEntry>('/api/diary', {
+          const res = await api.post<DiaryEntry>('/diary', {
             title: finalTitle,
             content: finalContent,
             entryDate: format(new Date(), 'yyyy-MM-dd'),
@@ -354,7 +354,7 @@ const DiaryPage = () => {
           setSelectedId(res.data.id)
           setIsNew(false)
         } else {
-          const res = await api.put<DiaryEntry>(`/api/diary/${currentSelectedId}`, {
+          const res = await api.put<DiaryEntry>(`/diary/${currentSelectedId}`, {
             title: finalTitle,
             content: finalContent,
             entryDate: entryDate ?? format(new Date(), 'yyyy-MM-dd'),
@@ -414,7 +414,7 @@ const DiaryPage = () => {
     e.stopPropagation()
     if (!window.confirm('Жазбаны жою?')) return
     try {
-      await api.delete(`/api/diary/${id}`)
+      await api.delete(`/diary/${id}`)
       setEntries((prev) => prev.filter((entry) => entry.id !== id))
       if (selectedId === id) {
         setSelectedId(null)

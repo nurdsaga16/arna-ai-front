@@ -53,11 +53,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       expiresIn: number
       email: string
       name: string
-    }>('/api/auth/login', { email, password })
+    }>('/auth/login', { email, password })
 
     auth.setToken(res.data.token)
 
-    const meRes = await api.get<User>('/api/auth/me')
+    const meRes = await api.get<User>('/auth/me')
     auth.setUser(meRes.data)
     setUser(meRes.data)
 
@@ -74,11 +74,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       expiresIn: number
       email: string
       name: string
-    }>('/api/auth/register', { email, name, password })
+    }>('/auth/register', { email, name, password })
 
     auth.setToken(res.data.token)
 
-    const meRes = await api.get<User>('/api/auth/me')
+    const meRes = await api.get<User>('/auth/me')
     auth.setUser(meRes.data)
     setUser(meRes.data)
 

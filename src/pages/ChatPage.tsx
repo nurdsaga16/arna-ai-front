@@ -230,7 +230,7 @@ const ChatPage = () => {
 
   const loadSessions = async (chatType: ChatType) => {
     try {
-      const res = await api.get<SessionItem[]>(`/api/chat/sessions?chatType=${chatType}`)
+      const res = await api.get<SessionItem[]>(`/chat/sessions?chatType=${chatType}`)
       if (chatType === 'planner') {
         setPlannerSessions(res.data)
       } else {
@@ -248,7 +248,7 @@ const ChatPage = () => {
 
   const loadSessionHistory = async (sessionId: string, chatType: ChatType) => {
     try {
-      const res = await api.get<ChatHistoryItem[]>(`/api/chat/history?sessionId=${sessionId}`)
+      const res = await api.get<ChatHistoryItem[]>(`/chat/history?sessionId=${sessionId}`)
       const msgs: Message[] = res.data.map((item, index) => ({
         id: `history_${index}_${item.timestamp}`,
         role: item.role,
@@ -289,7 +289,7 @@ const ChatPage = () => {
   }
 
   const sendMessage = async (text: string, targetChatType: ChatType, sessionId: string) => {
-    const endpoint = targetChatType === 'planner' ? '/api/chat/planner' : '/api/chat/mental'
+    const endpoint = targetChatType === 'planner' ? '/chat/planner' : '/chat/mental'
     const res = await api.post<{ content: string; chatType: string; createdAt: string }>(
       endpoint, { message: text, chatType: targetChatType, sessionId }
     )

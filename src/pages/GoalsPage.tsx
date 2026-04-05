@@ -79,7 +79,7 @@ const GoalsPage = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Мақсатты жою?')) return
     try {
-      await api.delete(`/api/goals/${id}`)
+      await api.delete(`/goals/${id}`)
       setGoals(prev => prev.filter(g => g.id !== id))
       toast.success('Мақсат жойылды')
     } catch {
@@ -92,11 +92,11 @@ const GoalsPage = () => {
     try {
       const body = { ...data, description: data.description || undefined, deadline: data.deadline || undefined }
       if (editingGoal) {
-        const res = await api.put<GoalResponse>(`/api/goals/${editingGoal.id}`, body)
+        const res = await api.put<GoalResponse>(`/goals/${editingGoal.id}`, body)
         setGoals(prev => prev.map(g => g.id === editingGoal.id ? res.data : g))
         toast.success('Мақсат жаңартылды')
       } else {
-        const res = await api.post<GoalResponse>('/api/goals', body)
+        const res = await api.post<GoalResponse>('/goals', body)
         setGoals(prev => [res.data, ...prev])
         toast.success('Мақсат қосылды')
       }

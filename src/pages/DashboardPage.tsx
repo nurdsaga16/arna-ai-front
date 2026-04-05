@@ -125,7 +125,7 @@ const DashboardPage = () => {
   const handleGeneratePlan = async () => {
     setIsPlanLoading(true)
     try {
-      const res = await api.post<PlannerResponse>('/api/chat/planner')
+      const res = await api.post<PlannerResponse>('/planner')
       setDailyPlan(res.data.content)
       if (res.data.generatedTasks && res.data.generatedTasks.length > 0) {
         setTodayTasks(res.data.generatedTasks)
@@ -142,9 +142,9 @@ const DashboardPage = () => {
     setTodayTasks(prev => prev.map(t => t.id === id ? { ...t, isDone: !isDone } : t))
     try {
       if (isDone) {
-        await api.patch(`/api/tasks/${id}/undone`)
+        await api.patch(`/tasks/${id}/undone`)
       } else {
-        await api.patch(`/api/tasks/${id}/done`)
+        await api.patch(`/tasks/${id}/done`)
       }
     } catch (error) {
       setTodayTasks(prev => prev.map(t => t.id === id ? { ...t, isDone } : t))
@@ -156,7 +156,7 @@ const DashboardPage = () => {
   const handleAnalyzeMood = async () => {
     setIsMoodLoading(true)
     try {
-      const res = await api.post<MoodResponse>('/api/mood/analyze')
+      const res = await api.post<MoodResponse>('/mood/analyze')
       setMoodData(res.data)
     } catch {
       toast.error('Талдауда қате болды')

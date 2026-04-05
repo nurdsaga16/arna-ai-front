@@ -253,9 +253,9 @@ const EditorEmptyState = ({ onCreate }: { onCreate: () => void }) => {
 const ListEmptyState = ({ onCreate }: { onCreate: () => void }) => {
   const [hovered, setHovered] = useState(false)
   return (
-    <div style={{ paddingTop: 60, textAlign: 'center' }}>
-      <BookOpen size={28} color="rgba(255,255,255,0.1)" style={{ marginBottom: 10 }} />
-      <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.25)', margin: 0 }}>Жазба жоқ</p>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: 60, textAlign: 'center' }}>
+      <BookOpen size={28} color="rgba(255,255,255,0.1)" />
+      <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.25)', marginTop: 10, marginBottom: 0 }}>Жазба жоқ</p>
       <button
         onClick={onCreate}
         onMouseEnter={() => setHovered(true)}

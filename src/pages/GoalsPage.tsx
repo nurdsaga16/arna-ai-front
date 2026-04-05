@@ -260,7 +260,7 @@ const GoalModal = ({ editingGoal, isSubmitting, onClose, onSubmit }: {
   onClose: () => void
   onSubmit: (data: FormValues) => void
 }) => {
-  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm<FormValues>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: editingGoal
       ? { title: editingGoal.title, description: editingGoal.description ?? '', deadline: editingGoal.deadline?.split('T')[0] ?? '', status: editingGoal.status }

@@ -211,29 +211,39 @@ const DashboardPage = () => {
             padding: '32px 48px 16px',
           }}
         >
-          {/* Left */}
+          {/* Left: greeting */}
           <div>
+            <p style={{
+              fontSize: 13,
+              color: 'rgba(229,226,225,0.4)',
+              margin: '0 0 4px',
+              letterSpacing: '0.02em',
+            }}>
+              Қайырлы күн
+            </p>
             <h1 style={{
               fontFamily: 'Manrope, sans-serif',
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: 800,
               color: '#e5e2e1',
-              letterSpacing: '-1px',
+              letterSpacing: '-0.5px',
               margin: 0,
             }}>
-              {format(new Date(), 'EEEE, d MMMM')}
+              {user?.name}
             </h1>
+          </div>
+
+          {/* Right: date */}
+          <div style={{ textAlign: 'right' }}>
             <p style={{
-              fontSize: 14,
-              color: 'rgba(229,226,225,0.5)',
-              marginTop: 4,
-              margin: '4px 0 0',
+              fontFamily: 'Manrope, sans-serif',
+              fontSize: 20,
+              fontWeight: 700,
+              color: '#e5e2e1',
+              margin: 0,
+              letterSpacing: '-0.3px',
             }}>
-              Қайырлы күн, {user?.name}.{' '}
-              Сіздің фокус:{' '}
-              <span style={{ color: '#c7bfff', fontWeight: 500 }}>
-                Мақсаттар мен жоспар
-              </span>
+              {format(new Date(), 'EEEE, d MMMM')}
             </p>
           </div>
         </div>

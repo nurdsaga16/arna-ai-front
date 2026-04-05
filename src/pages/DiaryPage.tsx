@@ -301,7 +301,7 @@ const DiaryPage = () => {
 
   useEffect(() => {
     api
-      .get<DiaryEntry[]>('/api/diary')
+      .get<DiaryEntry[]>('/diary')
       .then((res) => setEntries(res.data))
       .catch(() => toast.error('Жүктеу қатесі'))
       .finally(() => setIsLoading(false))

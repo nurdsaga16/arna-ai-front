@@ -62,7 +62,7 @@ const GoalsPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
-    api.get<GoalResponse[]>('/api/goals')
+    api.get<GoalResponse[]>('/goals')
       .then(res => setGoals(res.data))
       .catch(() => toast.error('Мақсаттарды жүктеуде қате'))
       .finally(() => setIsLoading(false))

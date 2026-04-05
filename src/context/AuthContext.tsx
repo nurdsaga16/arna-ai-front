@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return
     }
     api
-      .get<User>('/api/auth/me')
+      .get<User>('/auth/me')
       .then((res) => {
         setUser(res.data)
         auth.setUser(res.data)

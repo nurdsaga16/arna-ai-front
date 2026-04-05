@@ -104,10 +104,10 @@ const DashboardPage = () => {
     const load = async () => {
       try {
         const [goalsRes, tasksRes, diaryRes, moodRes] = await Promise.all([
-          api.get<GoalResponse[]>('/api/goals', { params: { status: 'ACTIVE' } }),
-          api.get<TaskResponse[]>('/api/tasks/today'),
-          api.get<DiaryResponse[]>('/api/diary'),
-          api.get<MoodResponse>('/api/mood/latest').catch(() => ({ data: null })),
+          api.get<GoalResponse[]>('/goals', { params: { status: 'ACTIVE' } }),
+          api.get<TaskResponse[]>('/tasks/today'),
+          api.get<DiaryResponse[]>('/diary'),
+          api.get<MoodResponse>('/mood/latest').catch(() => ({ data: null })),
         ])
         setActiveGoals(goalsRes.data)
         setTodayTasks(tasksRes.data)

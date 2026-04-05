@@ -122,8 +122,8 @@ const TasksPage = () => {
 
   useEffect(() => {
     Promise.all([
-      api.get<TaskResponse[]>('/api/tasks'),
-      api.get<GoalOption[]>('/api/goals?status=ACTIVE'),
+      api.get<TaskResponse[]>('/tasks'),
+      api.get<GoalOption[]>('/goals?status=ACTIVE'),
     ])
       .then(([tasksRes, goalsRes]) => {
         setTasks(tasksRes.data)

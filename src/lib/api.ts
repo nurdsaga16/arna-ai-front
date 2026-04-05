@@ -2,7 +2,9 @@ import axios from 'axios'
 import { getToken, logout } from './auth'
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+  // Если VITE_API_URL не задан, используем '/api' по умолчанию
+  // Это заставит браузер слать запросы на https://arna-ai-chi.vercel.app/api/...
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: { 'Content-Type': 'application/json' },
 })
 
